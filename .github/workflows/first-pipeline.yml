@@ -1,0 +1,44 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+
+on: 
+  push:
+  workflow_dispatch:
+
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+  
+    strategy:
+      matrix:
+        node-version: ['14.x', '16.x', '18.x', '20.x']
+    
+    steps:
+      - name: View secrets
+        run: echo "${{secrets.NAME}} ${{secrets.SNAME}}"
+      - name: Event name        
+        run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} "
+      - name: Os  
+        run: echo "🐧 This job is now running on a ${{ runner.os }}"
+      - name: Branch, Repo
+        run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Checkout repository code to server
+        uses: actions/checkout@v4
+      - name: auxiliary echo
+        run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: github workspace
+        run: echo "${{ github.workspace }}"
+      - name: List files in the repository
+        run: ls ${{ github.workspace }}
+      - name: Curr directory
+        run : pwd
+      - name: set up nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: install dependencies
+        run: npm i
+      - name: testing
+        run: npm test
+      - name: Job status 
+        run: echo "🍏 This job's status is ${{ job.status }}."
