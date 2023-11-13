@@ -6,7 +6,12 @@ const succeedtest = () => {
     process.exit(0);
 }
 
+const tempTest = () => {
+    console.log("Nothing");
+}
+
 
 succeedtest();
-failTest();
+// failTest();
+tempTest();
 
