@@ -21,5 +21,11 @@ jobs:
         run: ls ${{ github.workspace }}
       - name: Curr directory
         run : pwd
+      - name: set up nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - name: install dependencies
+        run: npm i
       - name: Job status 
         run: echo "🍏 This job's status is ${{ job.status }}."
