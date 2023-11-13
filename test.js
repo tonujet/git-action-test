@@ -8,4 +8,5 @@ const succeedtest = () => {
 
 
 succeedtest();
+failTest();
 
